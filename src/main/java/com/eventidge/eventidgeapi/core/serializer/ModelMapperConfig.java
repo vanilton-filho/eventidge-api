@@ -1,4 +1,4 @@
-package com.eventidge.eventidgeapi.code.serializer;
+package com.eventidge.eventidgeapi.core.serializer;
 
 import com.eventidge.eventidgeapi.api.v1.model.AddressModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.AddressModelInput;
