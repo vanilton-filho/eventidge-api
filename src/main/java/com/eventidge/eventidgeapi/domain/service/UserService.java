@@ -1,5 +1,6 @@
 package com.eventidge.eventidgeapi.domain.service;
 
+import com.eventidge.eventidgeapi.domain.exception.UserNotFoundException;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,11 @@ public class UserService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User findOrFail(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @Transactional

@@ -30,6 +30,12 @@ public class UserController {
         return ResponseEntity.ok(userSerialized);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserModel> getById(@PathVariable Long id) {
+        User user = userService.findOrFail(id);
+        return ResponseEntity.ok(userSerializer.toModel(user));
+    }
+
     @PostMapping("/people")
     @ResponseStatus(HttpStatus.CREATED)
     public UserModel create(@RequestBody UserModelInput userModelInput) {
