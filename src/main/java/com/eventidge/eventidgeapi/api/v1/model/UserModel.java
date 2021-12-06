@@ -1,6 +1,5 @@
 package com.eventidge.eventidgeapi.api.v1.model;
 
-import com.eventidge.eventidgeapi.domain.model.Person;
 import lombok.Getter;
 import lombok.Setter;
 

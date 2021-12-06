@@ -1,23 +1,22 @@
-package com.eventidge.eventidgeapi.domain.model;
+package com.eventidge.eventidgeapi.domain.model.user;
 
+import com.eventidge.eventidgeapi.domain.model.location.Address;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Entity
+@Embeddable
 public class Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column(name = "person_name")
     private String name;
+
+    @Column(name = "person_gender")
     private String gender;
+
+    @Column(name = "person_birth_date")
     private LocalDate birthDate;
 
     @Embedded

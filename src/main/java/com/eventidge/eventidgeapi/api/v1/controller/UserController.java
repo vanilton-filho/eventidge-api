@@ -3,7 +3,7 @@ package com.eventidge.eventidgeapi.api.v1.controller;
 import com.eventidge.eventidgeapi.api.v1.model.UserModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.UserModelInput;
 import com.eventidge.eventidgeapi.api.v1.serializers.UserSerializer;
-import com.eventidge.eventidgeapi.domain.model.User;
+import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.eventidge.eventidgeapi.domain.service;
 
-import com.eventidge.eventidgeapi.domain.model.User;
+import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

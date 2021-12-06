@@ -1,7 +1,7 @@
 package com.eventidge.eventidgeapi.domain.repository;
 
-import com.eventidge.eventidgeapi.domain.model.User;
-import com.eventidge.eventidgeapi.domain.model.UserPhoto;
+import com.eventidge.eventidgeapi.domain.model.user.User;
+import com.eventidge.eventidgeapi.domain.model.user.UserPhoto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

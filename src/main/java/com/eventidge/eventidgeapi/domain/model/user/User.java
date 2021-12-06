@@ -1,4 +1,4 @@
-package com.eventidge.eventidgeapi.domain.model;
+package com.eventidge.eventidgeapi.domain.model.user;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +22,7 @@ public class User {
     private String email;
     private String phone;
 
-    @OneToOne
+    @Embedded
     private Person person;
 
     @CreationTimestamp

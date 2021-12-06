@@ -1,8 +1,7 @@
 package com.eventidge.eventidgeapi.core.serializer;
 
 import com.eventidge.eventidgeapi.api.v1.model.AddressModel;
-import com.eventidge.eventidgeapi.api.v1.model.input.AddressModelInput;
-import com.eventidge.eventidgeapi.domain.model.Address;
+import com.eventidge.eventidgeapi.domain.model.location.Address;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

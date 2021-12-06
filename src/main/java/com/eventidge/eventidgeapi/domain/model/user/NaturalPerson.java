@@ -1,4 +1,4 @@
-package com.eventidge.eventidgeapi.domain.model;
+package com.eventidge.eventidgeapi.domain.model.user;
 
 import lombok.Data;
 
