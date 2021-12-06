@@ -1,7 +1,7 @@
 package com.eventidge.eventidgeapi.api.v1.controller;
 
 import com.eventidge.eventidgeapi.api.v1.model.UserModel;
-import com.eventidge.eventidgeapi.api.v1.model.input.UserModelInput;
+import com.eventidge.eventidgeapi.api.v1.model.input.UserWithPasswordInput;
 import com.eventidge.eventidgeapi.api.v1.serializers.UserSerializer;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.service.UserService;
@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,11 +39,11 @@ public class UserController {
 
     @PostMapping("/people")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserModel create(@RequestBody UserModelInput userModelInput) {
+    public UserModel create(@RequestBody @Valid UserWithPasswordInput userModelInput) {
         User user = userSerializer.toDomainObject(userModelInput);
         User userCreated = userService.save(user);
-        UserModel userModel = userSerializer.toModel(userCreated);
-        return userModel;
+        return userSerializer.toModel(userCreated);
+
     }
 
 }
