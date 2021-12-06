@@ -30,4 +30,13 @@ public class UserController {
         return ResponseEntity.ok(userSerialized);
     }
 
+    @PostMapping("/people")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserModel create(@RequestBody UserModelInput userModelInput) {
+        User user = userSerializer.toDomainObject(userModelInput);
+        User userCreated = userService.save(user);
+        UserModel userModel = userSerializer.toModel(userCreated);
+        return userModel;
+    }
+
 }

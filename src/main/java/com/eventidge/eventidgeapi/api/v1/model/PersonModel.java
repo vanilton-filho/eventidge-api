@@ -9,6 +9,5 @@ public class PersonModel {
 
     private String name;
     private String cpf;
-    private AddressModel address;
 
 }
