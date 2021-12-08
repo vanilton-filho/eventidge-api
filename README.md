@@ -1,8 +1,6 @@
 ![Logo Eventidge](assets/logo_eventidge.png)
 # Eventidge API
 
----
-
 Uma aplicação para fazer a ponte entre pessoas e eventos.
 
 - Acredito que para aquela pessoa que busca melhorar seus conhecimentos, participar 
@@ -15,3 +13,10 @@ eventos no mesmo segmento, que de certo modo o usuário gostaria de participar.
 
 ### Diagrama de classes de domínio
 ![Diagrama de classes de domínio](assets/diagrama_v1.png)
+
+## Como contribuir?
+Sinta-se à vontade para contribuir com este projeto com um pull request ou issue. Possuo planos
+de mais a frente desenvolver o frontend para o consumo dessa API. Este projeto está sob uma licensa MIT
+
+
+
