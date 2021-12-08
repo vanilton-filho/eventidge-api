@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends CustomJpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
+    @Query("from User as u where u.email = :email or u.person.naturalPerson.cpf = :cpf")
+    Optional<User> findByEmailOrCpf(String email, String cpf);
 
     @Query("select up from UserPhoto as up where up.user.id = :userId")
     Optional<UserPhoto> findPhotoById(Long userId);

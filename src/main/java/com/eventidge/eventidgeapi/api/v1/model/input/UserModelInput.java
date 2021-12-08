@@ -15,11 +15,13 @@ public class UserModelInput {
     private String username;
 
     @Email
+    @NotBlank
     private String email;
 
     @NotBlank
     private String personName;
 
     @CPF
+    @NotBlank
     private String cpf;
 }

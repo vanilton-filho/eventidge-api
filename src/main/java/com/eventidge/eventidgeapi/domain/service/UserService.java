@@ -1,5 +1,6 @@
 package com.eventidge.eventidgeapi.domain.service;
 
+import com.eventidge.eventidgeapi.domain.exception.ConflictException;
 import com.eventidge.eventidgeapi.domain.exception.UserNotFoundException;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.repository.UserRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -26,6 +28,16 @@ public class UserService {
 
     @Transactional
     public User save(User user) {
+        userRepository.detach(user);
+        var email = user.getEmail();
+        var cpf = user.getPerson().getNaturalPerson().getCpf();
+        Optional<User> userFound = userRepository.findByEmailOrCpf(email, cpf);
+
+        if (userFound.isPresent() && !userFound.get().equals(user)) {
+            throw new ConflictException("Duplicate Email or CPF");
+        }
+
         return userRepository.save(user);
+
     }
 }
