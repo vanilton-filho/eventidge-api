@@ -16,7 +16,5 @@ eventos no mesmo segmento, que de certo modo o usuário gostaria de participar.
 
 ## Como contribuir?
 Sinta-se à vontade para contribuir com este projeto com um pull request ou issue. Possuo planos
-de mais a frente desenvolver o frontend para o consumo dessa API. Este projeto está sob uma licensa MIT
-
-
+de mais à frente desenvolver o frontend para o consumo dessa API. Este projeto está sob a Apache License 2.0 [LICENSE](LICENSE).
 
