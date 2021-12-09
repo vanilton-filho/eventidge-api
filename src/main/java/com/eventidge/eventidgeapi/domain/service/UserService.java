@@ -17,6 +17,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+
+    private EmailService emailService;
+
     public List<User> findAll() {
         return userRepository.findAll();
     }
@@ -37,7 +41,18 @@ public class UserService {
             throw new ConflictException("Duplicate Email or CPF");
         }
 
-        return userRepository.save(user);
+        // TODO 1: Implementar essa feature para envio de email de maneira correta e organizada
+        var userCreated = userRepository.save(user);
+        var message = EmailService.EmailMessage.builder()
+                .subject(userCreated.getPerson().getName() + " - Welcome")
+                .body("user-created.html")
+                .variable("variable", userCreated)
+                .recipient("<test@email.com>")
+                .build();
 
+        emailService.send(message);
+        //##########################################################################################
+
+        return userCreated;
     }
 }
