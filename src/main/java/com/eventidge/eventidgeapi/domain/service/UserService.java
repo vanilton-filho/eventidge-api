@@ -41,18 +41,8 @@ public class UserService {
             throw new ConflictException("Duplicate Email or CPF");
         }
 
-        // TODO 1: Implementar essa feature para envio de email de maneira correta e organizada
-        var userCreated = userRepository.save(user);
-        var message = EmailService.EmailMessage.builder()
-                .subject(userCreated.getPerson().getName() + " - Welcome")
-                .body("user-created.html")
-                .variable("variable", userCreated)
-                .recipient("<test@email.com>")
-                .build();
+        user.confirmRegistration();
+        return userRepository.save(user);
 
-        emailService.send(message);
-        //##########################################################################################
-
-        return userCreated;
     }
 }

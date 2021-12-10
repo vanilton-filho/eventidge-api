@@ -1,16 +1,18 @@
 package com.eventidge.eventidgeapi.domain.model.user;
 
+import com.eventidge.eventidgeapi.domain.eventflow.UserCreatedEvent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class User {
+public class User extends AbstractAggregateRoot<User> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +35,7 @@ public class User {
     @Embedded
     private Organization organization;
 
-
+    public void confirmRegistration() {
+        registerEvent(new UserCreatedEvent(this));
+    }
 }
