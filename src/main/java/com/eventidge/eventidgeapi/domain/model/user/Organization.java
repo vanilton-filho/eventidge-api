@@ -19,6 +19,6 @@ public class Organization {
     private String phone;
 
     @Column(name = "organization_is_verified")
-    private Boolean isVerified;
+    private Boolean isVerified = Boolean.FALSE;
 
 }

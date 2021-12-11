@@ -1,4 +1,4 @@
-package com.eventidge.eventidgeapi.domain.eventflow;
+package com.eventidge.eventidgeapi.domain.event;
 
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import lombok.AllArgsConstructor;

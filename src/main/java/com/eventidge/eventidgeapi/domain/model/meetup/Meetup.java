@@ -1,9 +1,11 @@
-package com.eventidge.eventidgeapi.domain.model.event;
+package com.eventidge.eventidgeapi.domain.model.meetup;
 
+import com.eventidge.eventidgeapi.domain.event.MeetupCreatedEvent;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
@@ -12,7 +14,7 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Event {
+public class Meetup extends AbstractAggregateRoot<Meetup> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +36,12 @@ public class Event {
     private OffsetDateTime createdAt;
 
     @PrePersist
-    public void generateEventCode() {
+    public void generateMeetupCode() {
         setCode(UUID.randomUUID().toString());
+    }
+
+    public void confirmCreation() {
+        registerEvent(new MeetupCreatedEvent(this));
     }
 
 }

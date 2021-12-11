@@ -1,4 +1,4 @@
-package com.eventidge.eventidgeapi.domain.model.event;
+package com.eventidge.eventidgeapi.domain.model.meetup;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class EventRegistry {
+public class MeetupRegistry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

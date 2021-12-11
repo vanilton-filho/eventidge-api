@@ -1,6 +1,6 @@
 package com.eventidge.eventidgeapi.domain.model.user;
 
-import com.eventidge.eventidgeapi.domain.eventflow.UserCreatedEvent;
+import com.eventidge.eventidgeapi.domain.event.UserCreatedEvent;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,6 +23,7 @@ public class User extends AbstractAggregateRoot<User> {
     private String password;
     private String email;
     private String phone;
+    private Boolean status;
 
     @Embedded
     private Person person;

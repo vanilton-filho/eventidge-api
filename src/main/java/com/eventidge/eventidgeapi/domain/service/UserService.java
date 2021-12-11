@@ -59,8 +59,10 @@ public class UserService {
     public User save(User user) {
         var userType = user.getPerson();
         if (userType != null) {
+            user.setStatus(true);
             return saveUserPerson(user);
         } else {
+            user.setStatus(false);
             return saveUserOrg(user);
         }
     }
