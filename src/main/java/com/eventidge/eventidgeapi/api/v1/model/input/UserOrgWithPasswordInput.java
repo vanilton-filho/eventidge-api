@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-public class UserWithPasswordInput extends UserModelInput {
+public class UserOrgWithPasswordInput extends UserOrganizationModelInput {
 
     @NotBlank
     private String password;

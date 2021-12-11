@@ -2,23 +2,18 @@ package com.eventidge.eventidgeapi.api.v1.model.input;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.validation.constraints.Email;
+import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-public class UserModelInput {
+public class UserPersonModelInput extends UserModelInput {
 
     @NotBlank
-    private String username;
+    private String personName;
 
-    @Email
+    @CPF
     @NotBlank
-    private String email;
-
-    @NotBlank
-    private String phone;
-
+    private String cpf;
 
 }

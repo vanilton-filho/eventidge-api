@@ -31,7 +31,7 @@ public class UserService {
     }
 
     @Transactional
-    public User save(User user) {
+    public User saveUserPerson(User user) {
         userRepository.detach(user);
         var email = user.getEmail();
         var cpf = user.getPerson().getNaturalPerson().getCpf();
@@ -44,5 +44,11 @@ public class UserService {
         user.confirmRegistration();
         return userRepository.save(user);
 
+    }
+
+    @Transactional
+    public User saveUserOrg(User user) {
+        user.confirmRegistration();
+        return userRepository.save(user);
     }
 }

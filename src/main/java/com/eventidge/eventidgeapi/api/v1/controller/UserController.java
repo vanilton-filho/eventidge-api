@@ -1,7 +1,9 @@
 package com.eventidge.eventidgeapi.api.v1.controller;
 
 import com.eventidge.eventidgeapi.api.v1.model.UserModel;
-import com.eventidge.eventidgeapi.api.v1.model.input.UserWithPasswordInput;
+import com.eventidge.eventidgeapi.api.v1.model.UserOrgModel;
+import com.eventidge.eventidgeapi.api.v1.model.input.UserOrgWithPasswordInput;
+import com.eventidge.eventidgeapi.api.v1.model.input.UserPersonWithPasswordInput;
 import com.eventidge.eventidgeapi.api.v1.serializers.UserSerializer;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.service.UserService;
@@ -34,16 +36,24 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserModel> getById(@PathVariable Long id) {
         User user = userService.findOrFail(id);
-        return ResponseEntity.ok(userSerializer.toModel(user));
+        return ResponseEntity.ok(userSerializer.toUserPersonModel(user));
     }
 
     @PostMapping("/people")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserModel create(@RequestBody @Valid UserWithPasswordInput userModelInput) {
-        User user = userSerializer.toDomainObject(userModelInput);
-        User userCreated = userService.save(user);
-        return userSerializer.toModel(userCreated);
+    public UserModel createUserPerson(@RequestBody @Valid UserPersonWithPasswordInput userModelInput) {
+        User user = userSerializer.toDomainUserPersonObject(userModelInput);
+        User userCreated = userService.saveUserPerson(user);
+        return userSerializer.toUserPersonModel(userCreated);
 
+    }
+
+    @PostMapping("/org")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserOrgModel create(@RequestBody @Valid UserOrgWithPasswordInput userOrgWithPasswordInput) {
+        User user = userSerializer.toDomainUserOrgObject(userOrgWithPasswordInput);
+        User userCreated = userService.saveUserOrg(user);
+        return userSerializer.toUserOrgModel(userCreated);
     }
 
 }

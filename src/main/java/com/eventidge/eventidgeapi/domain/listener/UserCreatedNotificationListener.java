@@ -22,7 +22,6 @@ public class UserCreatedNotificationListener {
                 .variable("user", user)
                 .recipient(user.getEmail())
                 .build();
-        System.out.println("AQUIIII");
         emailService.send(message);
     }
 }
