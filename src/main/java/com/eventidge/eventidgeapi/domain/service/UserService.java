@@ -25,6 +25,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<User> findAllOrgs() {
+        return userRepository.findAllOrgs();
+    }
+
     public User findOrFail(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));

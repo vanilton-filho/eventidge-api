@@ -1,6 +1,7 @@
 package com.eventidge.eventidgeapi.api.v1.controller;
 
 import com.eventidge.eventidgeapi.api.v1.model.UserModel;
+import com.eventidge.eventidgeapi.api.v1.model.UserPersonModel;
 import com.eventidge.eventidgeapi.api.v1.model.UserOrgModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.UserOrgWithPasswordInput;
 import com.eventidge.eventidgeapi.api.v1.model.input.UserPersonWithPasswordInput;
@@ -28,30 +29,38 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserModel>> getAll() {
         List<User> users = userService.findAll();
-        List<UserModel> userSerialized = userSerializer.toCollectionModel(users);
+        List<UserModel> usersSerialized = userSerializer.toCollectionModel(users);
 
-        return ResponseEntity.ok(userSerialized);
+        return ResponseEntity.ok(usersSerialized);
+    }
+
+    @GetMapping("/orgs")
+    public ResponseEntity<List<UserOrgModel>> getAllOrgs() {
+        List<User> orgs = userService.findAllOrgs();
+        List<UserOrgModel> usersSerialized = userSerializer.toOrgCollectionModel(orgs);
+
+        return ResponseEntity.ok(usersSerialized);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserModel> getById(@PathVariable Long id) {
         User user = userService.findOrFail(id);
-        return ResponseEntity.ok(userSerializer.toUserPersonModel(user));
+        return ResponseEntity.ok(userSerializer.toModel(user));
     }
 
     @PostMapping("/people")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserModel createUserPerson(@RequestBody @Valid UserPersonWithPasswordInput userModelInput) {
-        User user = userSerializer.toDomainUserPersonObject(userModelInput);
+    public UserPersonModel createUserPerson(@RequestBody @Valid UserPersonWithPasswordInput userModelInput) {
+        User user = userSerializer.toDomainObject(userModelInput);
         User userCreated = userService.saveUserPerson(user);
         return userSerializer.toUserPersonModel(userCreated);
 
     }
 
-    @PostMapping("/org")
+    @PostMapping("/orgs")
     @ResponseStatus(HttpStatus.CREATED)
     public UserOrgModel create(@RequestBody @Valid UserOrgWithPasswordInput userOrgWithPasswordInput) {
-        User user = userSerializer.toDomainUserOrgObject(userOrgWithPasswordInput);
+        User user = userSerializer.toDomainObject(userOrgWithPasswordInput);
         User userCreated = userService.saveUserOrg(user);
         return userSerializer.toUserOrgModel(userCreated);
     }

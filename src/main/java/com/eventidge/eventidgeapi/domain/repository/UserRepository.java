@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,5 +17,8 @@ public interface UserRepository extends CustomJpaRepository<User, Long> {
 
     @Query("select up from UserPhoto as up where up.user.id = :userId")
     Optional<UserPhoto> findPhotoById(Long userId);
+
+    @Query("from User as up where up.organization.name <> ''")
+    List<User> findAllOrgs();
 
 }

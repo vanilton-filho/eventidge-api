@@ -6,10 +6,9 @@ import lombok.Setter;
 
 import java.time.OffsetDateTime;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Setter
 @Getter
-public class UserModel {
+@Setter
+public class UserPersonModel {
 
     private Long id;
     private String username;
@@ -17,6 +16,5 @@ public class UserModel {
     private String phone;
     private OffsetDateTime createdAt;
     private PersonModel person;
-    private OrgModel organization;
 
 }
