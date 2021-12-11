@@ -54,16 +54,15 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserPersonModel createUserPerson(@RequestBody @Valid UserPersonWithPasswordInput userModelInput) {
         User user = userSerializer.toDomainObject(userModelInput);
-        User userCreated = userService.saveUserPerson(user);
+        User userCreated = userService.save(user);
         return userSerializer.toUserPersonModel(userCreated);
-
     }
 
     @PostMapping("/orgs")
     @ResponseStatus(HttpStatus.CREATED)
     public UserOrgModel create(@RequestBody @Valid UserOrgWithPasswordInput userOrgWithPasswordInput) {
         User user = userSerializer.toDomainObject(userOrgWithPasswordInput);
-        User userCreated = userService.saveUserOrg(user);
+        User userCreated = userService.save(user);
         return userSerializer.toUserOrgModel(userCreated);
     }
 

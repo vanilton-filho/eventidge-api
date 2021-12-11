@@ -59,4 +59,13 @@ public class UserService {
         user.confirmRegistration();
         return userRepository.save(user);
     }
+
+    public User save(User user) {
+        var userType = user.getPerson();
+        if (userType != null) {
+            return saveUserPerson(user);
+        } else {
+            return saveUserOrg(user);
+        }
+    }
 }
