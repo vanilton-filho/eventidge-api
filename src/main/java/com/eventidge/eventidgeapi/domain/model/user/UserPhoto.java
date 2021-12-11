@@ -23,4 +23,7 @@ public class UserPhoto {
     private String contentType;
     private Long length;
 
+    public Long getUserId() {
+        return getUser() != null ? user.getId() : null;
+    }
 }

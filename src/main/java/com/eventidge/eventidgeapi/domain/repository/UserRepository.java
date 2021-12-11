@@ -10,13 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CustomJpaRepository<User, Long> {
+public interface UserRepository extends CustomJpaRepository<User, Long>, UserPhotoRepositoryQueries {
 
     @Query("from User as u where u.email = :email or u.person.naturalPerson.cpf = :cpf")
     Optional<User> findByEmailOrCpf(String email, String cpf);
-
-    @Query("select up from UserPhoto as up where up.user.id = :userId")
-    Optional<UserPhoto> findPhotoById(Long userId);
 
     @Query("from User as u where u.organization is not null")
     List<User> findAllOrgs();
@@ -24,4 +21,6 @@ public interface UserRepository extends CustomJpaRepository<User, Long> {
     @Query("from User as u where u.person is not null")
     List<User> findAllPerson();
 
+    @Query("select up from UserPhoto as up where up.user.id = :userId")
+    Optional<UserPhoto> findPhotoById(Long userId);
 }
