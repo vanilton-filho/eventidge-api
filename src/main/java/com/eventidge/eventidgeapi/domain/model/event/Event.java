@@ -1,5 +1,6 @@
 package com.eventidge.eventidgeapi.domain.model.event;
 
+import com.eventidge.eventidgeapi.domain.model.user.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,6 +25,10 @@ public class Event {
     private String name;
     private String description;
     private Boolean isEnabled = Boolean.FALSE;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User responsible;
 
     @CreationTimestamp
     private OffsetDateTime createdAt;

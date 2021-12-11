@@ -18,7 +18,10 @@ public interface UserRepository extends CustomJpaRepository<User, Long> {
     @Query("select up from UserPhoto as up where up.user.id = :userId")
     Optional<UserPhoto> findPhotoById(Long userId);
 
-    @Query("from User as up where up.organization.name <> ''")
+    @Query("from User as u where u.organization is not null")
     List<User> findAllOrgs();
+
+    @Query("from User as u where u.person is not null")
+    List<User> findAllPerson();
 
 }

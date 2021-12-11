@@ -26,6 +26,7 @@ public class UserController {
     @Autowired
     private UserSerializer userSerializer;
 
+
     @GetMapping
     public ResponseEntity<List<UserModel>> getAll() {
         List<User> users = userService.findAll();
@@ -34,6 +35,7 @@ public class UserController {
         return ResponseEntity.ok(usersSerialized);
     }
 
+    // TODO: Será mais interessante desenvolver busca por query params
     @GetMapping("/orgs")
     public ResponseEntity<List<UserOrgModel>> getAllOrgs() {
         List<User> orgs = userService.findAllOrgs();

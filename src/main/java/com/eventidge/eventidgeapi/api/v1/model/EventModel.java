@@ -16,4 +16,5 @@ public class EventModel {
     private Boolean isEnabled;
     private OffsetDateTime createdAt;
 
+
 }

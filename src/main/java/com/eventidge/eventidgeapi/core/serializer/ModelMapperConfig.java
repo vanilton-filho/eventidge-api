@@ -1,7 +1,11 @@
 package com.eventidge.eventidgeapi.core.serializer;
 
 import com.eventidge.eventidgeapi.api.v1.model.AddressModel;
+import com.eventidge.eventidgeapi.api.v1.model.EventModel;
+import com.eventidge.eventidgeapi.api.v1.model.UserOrgModel;
+import com.eventidge.eventidgeapi.api.v1.model.input.EventModelInput;
 import com.eventidge.eventidgeapi.api.v1.model.input.UserPersonWithPasswordInput;
+import com.eventidge.eventidgeapi.domain.model.event.Event;
 import com.eventidge.eventidgeapi.domain.model.location.Address;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import org.modelmapper.ModelMapper;
@@ -34,6 +38,9 @@ public class ModelMapperConfig {
                 UserPersonWithPasswordInput::getCpf,
                 ((dest, value) -> dest.getPerson().getNaturalPerson().setCpf(value))
         );
+
+        // Event to EventModel
+        var eventToEventModel = modelMapper.createTypeMap(Event.class, EventModel.class);
 
 
         return modelMapper;
