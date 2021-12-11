@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,7 @@ public class UserPhotoStorageService {
         }
 
         userPhoto.setFileName(fileName);
+        userPhoto.setUpdatedAt(OffsetDateTime.now());
         userPhoto = userRepository.save(userPhoto);
         userRepository.flush();
 

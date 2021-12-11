@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -22,6 +23,8 @@ public class UserPhoto {
     private String fileName;
     private String contentType;
     private Long length;
+    private OffsetDateTime updatedAt;
+
 
     public Long getUserId() {
         return getUser() != null ? user.getId() : null;
