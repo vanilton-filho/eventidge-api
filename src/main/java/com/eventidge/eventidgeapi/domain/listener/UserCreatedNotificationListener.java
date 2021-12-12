@@ -22,6 +22,7 @@ public class UserCreatedNotificationListener {
                 .variable("user", user)
                 .recipient(user.getEmail())
                 .build();
+
         emailService.send(message);
     }
 }
