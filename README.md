@@ -11,6 +11,14 @@ digamos que um passo a menos para uma landing page.
 tipos de eventos o que para mim pode justificar determinados tipos de conversão para outros 
 eventos no mesmo segmento, que de certo modo o usuário gostaria de participar.
 
+> Esse projeto tem por motivos mostrar tudo aquilo que aprendi e continuo aprendendo para modelar e
+implementar REST APIs usando Spring Boot. Nesse projeto vamos utilizar o MySQL e será possível ver
+a utilização do JPA e gerenciamento de migrações com o Flyway. Também vamos ver diversos padrões e usos
+de boas práticas para implementar uma REST API. Vamos lidar com eventos, envio de emails, armazenamento de arquivos (foto, pdf),
+geração de relatórios, Bean Validation, HATEOAS e muito mais. O projeto vai seguir em pleno desenvolvimento e espero conseguir
+em breve a primeira release. Estou utilizando a versão 17 do Java e gosto muito de usar bastante das novas
+features como lambdas e method references. Então, simbora!
+
 ## Features
 
 - [ ] Registro em eventos através de uma tag (ex: #myfirstevent) ou QR Code
