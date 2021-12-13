@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.OffsetDateTime;
 
 @Data
@@ -21,6 +18,7 @@ public class MeetupRegistry {
     private Long id;
 
     @CreationTimestamp
+    @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime entryTime;
 
     private Boolean isAccordingTerms;

@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 @Data
@@ -29,8 +31,11 @@ public class User extends AbstractAggregateRoot<User> {
     private Person person;
 
     @CreationTimestamp
+    @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime createdAt;
 
+    @UpdateTimestamp
+    @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime updatedAt;
 
     @Embedded

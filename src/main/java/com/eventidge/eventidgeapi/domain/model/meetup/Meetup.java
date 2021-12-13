@@ -5,6 +5,7 @@ import com.eventidge.eventidgeapi.domain.model.user.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
@@ -33,7 +34,12 @@ public class Meetup extends AbstractAggregateRoot<Meetup> {
     private User responsible;
 
     @CreationTimestamp
+    @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(nullable = false, columnDefinition = "datetime")
+    private OffsetDateTime updatedAt;
 
     @PrePersist
     public void generateMeetupCode() {
