@@ -15,6 +15,11 @@ public interface UserRepository extends CustomJpaRepository<User, Long>, UserPho
     @Query("from User as u where u.email = :email or u.person.naturalPerson.cpf = :cpf")
     Optional<User> findByEmailOrCpf(String email, String cpf);
 
+    Optional<User> findByEmail(String email);
+
+    @Query("from User as u where u.person.naturalPerson.cpf = :cpf")
+    Optional<User> findByCpf(String cpf);
+
     @Query("from User as u where u.organization is not null")
     List<User> findAllOrgs();
 
