@@ -1,7 +1,7 @@
 package com.eventidge.eventidgeapi.core.serializer;
 
 import com.eventidge.eventidgeapi.api.v1.model.AddressModel;
-import com.eventidge.eventidgeapi.api.v1.model.EventModel;
+import com.eventidge.eventidgeapi.api.v1.model.MeetupModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.UserPersonWithPasswordInput;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
 import com.eventidge.eventidgeapi.domain.model.location.Address;
@@ -38,7 +38,7 @@ public class ModelMapperConfig {
         );
 
         // Event to EventModel
-        var eventToEventModel = modelMapper.createTypeMap(Meetup.class, EventModel.class);
+        var eventToEventModel = modelMapper.createTypeMap(Meetup.class, MeetupModel.class);
 
 
         return modelMapper;

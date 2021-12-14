@@ -1,6 +1,6 @@
 package com.eventidge.eventidgeapi.api.v1.serializers;
 
-import com.eventidge.eventidgeapi.api.v1.model.EventModel;
+import com.eventidge.eventidgeapi.api.v1.model.MeetupModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.EventModelInput;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
 import org.modelmapper.ModelMapper;
@@ -16,11 +16,11 @@ public class MeetupSerializer {
     @Autowired
     public ModelMapper modelMapper;
 
-    public EventModel toModel(Meetup meetup) {
-        return modelMapper.map(meetup, EventModel.class);
+    public MeetupModel toModel(Meetup meetup) {
+        return modelMapper.map(meetup, MeetupModel.class);
     }
 
-    public List<EventModel> toCollectionModel(List<Meetup> meetups) {
+    public List<MeetupModel> toCollectionModel(List<Meetup> meetups) {
         return meetups.stream()
                 .map(this::toModel)
                 .collect(Collectors.toList());

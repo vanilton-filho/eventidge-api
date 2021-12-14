@@ -1,5 +1,6 @@
 package com.eventidge.eventidgeapi.domain.service;
 
+import com.eventidge.eventidgeapi.domain.exception.BusinessException;
 import com.eventidge.eventidgeapi.domain.exception.EventByCodeNotFoundException;
 import com.eventidge.eventidgeapi.domain.exception.EventByTagNotFoundException;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
@@ -8,6 +9,8 @@ import com.eventidge.eventidgeapi.domain.repository.MeetupRepository;
 import com.eventidge.eventidgeapi.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class MeetupService {
@@ -31,6 +34,11 @@ public class MeetupService {
     public Meetup save(Meetup meetup) {
         Long userId = meetup.getResponsible().getId();
         User responsible = userService.findOrFail(userId);
+
+        Optional<Meetup> meetupFound = meetupRepository.findByTag(meetup.getTag());
+        if (meetupFound.isPresent()) {
+            throw new BusinessException("Duplicating tags is not allowed.");
+        }
 
         meetup.setResponsible(responsible);
         meetup.confirmCreation();

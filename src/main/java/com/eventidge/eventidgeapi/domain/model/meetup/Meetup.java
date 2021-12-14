@@ -23,6 +23,8 @@ public class Meetup extends AbstractAggregateRoot<Meetup> {
     private Long id;
 
     private String code;
+
+    @Column(unique = true)
     private String tag;
 
     private String name;

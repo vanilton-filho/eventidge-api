@@ -7,7 +7,7 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-public class EventModel {
+public class MeetupModel {
 
     private String code;
     private String tag;
