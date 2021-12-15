@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class MeetupRegistry {
+public class MeetupRegistration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,11 @@ public class MeetupRegistry {
     @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime entryTime;
 
+    @OneToOne
+    private Meetup meetup;
+
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User participant;
 
     private Boolean isAccordingTerms;

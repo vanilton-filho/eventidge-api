@@ -1,8 +1,6 @@
 package com.eventidge.eventidgeapi.domain.service;
 
-import com.eventidge.eventidgeapi.domain.exception.BusinessException;
-import com.eventidge.eventidgeapi.domain.exception.EventByCodeNotFoundException;
-import com.eventidge.eventidgeapi.domain.exception.EventByTagNotFoundException;
+import com.eventidge.eventidgeapi.domain.exception.*;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.repository.MeetupRepository;
@@ -20,6 +18,11 @@ public class MeetupService {
 
     @Autowired
     private UserService userService;
+
+    public Meetup findOrFail(Long id) {
+        return meetupRepository.findById(id)
+                .orElseThrow(() -> new MeetupNotFoundException(id));
+    }
 
     public Meetup getByCode(String code) {
         return meetupRepository.findByCode(code)
