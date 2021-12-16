@@ -4,7 +4,6 @@ import com.eventidge.eventidgeapi.domain.exception.*;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.repository.MeetupRepository;
-import com.eventidge.eventidgeapi.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

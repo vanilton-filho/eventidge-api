@@ -11,11 +11,9 @@ import com.eventidge.eventidgeapi.domain.service.MeetupRegistrationService;
 import com.eventidge.eventidgeapi.domain.service.MeetupService;
 import com.eventidge.eventidgeapi.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolationException;
 
 @RestController
 @RequestMapping("/v1/meetups-registrations/{eventTag}")
