@@ -1,5 +1,6 @@
 package com.eventidge.eventidgeapi.api.v1.controller;
 
+import com.eventidge.eventidgeapi.api.utils.MediaTypeHelper;
 import com.eventidge.eventidgeapi.api.v1.model.UserPhotoModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.UserPhotoInput;
 import com.eventidge.eventidgeapi.api.v1.serializers.UserPhotoSerializer;
@@ -66,7 +67,7 @@ public class UserPhotoController {
             MediaType photoMediaType = MediaType.parseMediaType(userPhoto.getContentType());
             List<MediaType> acceptedMediaTypes = MediaType.parseMediaTypes(acceptHeader);
 
-            checkMediaTypes(photoMediaType, acceptedMediaTypes);
+            MediaTypeHelper.checkMediaTypes(photoMediaType, acceptedMediaTypes);
 
             FileStorageService.FileRecovered userPhotoRecovered = fileStorageService.toRecover(userPhoto.getFileName());
             if (userPhotoRecovered.hasUrl()) {
@@ -89,11 +90,4 @@ public class UserPhotoController {
         }
     }
 
-    private void checkMediaTypes(MediaType mediaTypePhoto, List<MediaType> acceptedMediaTypes) throws HttpMediaTypeNotAcceptableException {
-        boolean isEql = acceptedMediaTypes.stream()
-                .anyMatch(mediaType -> mediaType.isCompatibleWith(mediaTypePhoto));
-        if (!isEql) {
-            throw new HttpMediaTypeNotAcceptableException(acceptedMediaTypes);
-        }
-    }
 }

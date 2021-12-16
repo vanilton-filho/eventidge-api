@@ -62,7 +62,7 @@ public class MeetupController {
         String textToEncode = ResourceUriHelper.addUriResponseHeader("http://api.eventidge.local:8080/v1/meetups-registrations", meetup.getTag());
         QRCodeWriter barcodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix =
-                barcodeWriter.encode(textToEncode, BarcodeFormat.QR_CODE, 500, 500);
+                    barcodeWriter.encode(textToEncode, BarcodeFormat.QR_CODE, 300, 300);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ImageIO.write(MatrixToImageWriter.toBufferedImage(bitMatrix), "PNG", outputStream);                          // Passing: ​(RenderedImage im, String formatName, OutputStream output)
         InputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());

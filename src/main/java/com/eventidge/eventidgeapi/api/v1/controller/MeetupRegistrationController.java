@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/v1/meetups-registrations/{eventTag}")
+@RequestMapping("/v1/meetups-registrations/{meetupTag}")
 public class MeetupRegistrationController {
 
     @Autowired
@@ -33,13 +33,13 @@ public class MeetupRegistrationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MeetupRegistrationModel register(@PathVariable String eventTag) {
+    public MeetupRegistrationModel register(@PathVariable String meetupTag) {
         MeetupRegistration meetupRegistration = new MeetupRegistration();
 
         User participant = userService.findOrFail(1L);
         meetupRegistration.setParticipant(participant);
 
-        Meetup meetup = meetupService.getByTag(eventTag);
+        Meetup meetup = meetupService.getByTag(meetupTag);
         meetupRegistration.setMeetup(meetup);
 
         meetupRegistration.setIsAccordingTerms(true);

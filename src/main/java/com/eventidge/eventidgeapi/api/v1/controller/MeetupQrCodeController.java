@@ -1,5 +1,6 @@
 package com.eventidge.eventidgeapi.api.v1.controller;
 
+import com.eventidge.eventidgeapi.api.utils.MediaTypeHelper;
 import com.eventidge.eventidgeapi.api.utils.ResourceUriHelper;
 import com.eventidge.eventidgeapi.domain.exception.NotFoundException;
 import com.eventidge.eventidgeapi.domain.model.meetup.MeetupQrCode;
@@ -38,24 +39,18 @@ public class MeetupQrCodeController {
             MediaType qrCodeMediaType = MediaType.parseMediaType(meetupQrCode.getContentType());
             List<MediaType> acceptedMediaTypes = MediaType.parseMediaTypes(acceptHeader);
 
-            checkMediaTypes(qrCodeMediaType, acceptedMediaTypes);
+            MediaTypeHelper.checkMediaTypes(qrCodeMediaType, acceptedMediaTypes);
 
-            FileStorageService.FileRecovered userPhotoRecovered = fileStorageService.toRecover(meetupQrCode.getFileName());
+            FileStorageService.FileRecovered qrCodeRecovered = fileStorageService.toRecover(meetupQrCode.getFileName());
 
             return ResponseEntity.ok()
                     .contentType(qrCodeMediaType)
                     .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*")
-                    .body(new InputStreamResource(userPhotoRecovered.getInputStream()));
+                    .body(new InputStreamResource(qrCodeRecovered.getInputStream()));
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    private void checkMediaTypes(MediaType mediaTypePhoto, List<MediaType> acceptedMediaTypes) throws HttpMediaTypeNotAcceptableException {
-        boolean isEql = acceptedMediaTypes.stream()
-                .anyMatch(mediaType -> mediaType.isCompatibleWith(mediaTypePhoto));
-        if (!isEql) {
-            throw new HttpMediaTypeNotAcceptableException(acceptedMediaTypes);
-        }
-    }
+
 }
