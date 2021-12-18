@@ -2,9 +2,11 @@ package com.eventidge.eventidgeapi.core.serializer;
 
 import com.eventidge.eventidgeapi.api.v1.model.AddressModel;
 import com.eventidge.eventidgeapi.api.v1.model.MeetupModel;
+import com.eventidge.eventidgeapi.api.v1.model.UserWinnerModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.UserPersonWithPasswordInput;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
 import com.eventidge.eventidgeapi.domain.model.location.Address;
+import com.eventidge.eventidgeapi.domain.model.meetup.MeetupPrizeDraw;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -37,9 +39,23 @@ public class ModelMapperConfig {
                 ((dest, value) -> dest.getPerson().getNaturalPerson().setCpf(value))
         );
 
-        // Event to EventModel
-        var eventToEventModel = modelMapper.createTypeMap(Meetup.class, MeetupModel.class);
+        // MeetupPrizeDraw to UserWinnerModel
+        var meetupPrizeDrawToUserWinnerModel = modelMapper.createTypeMap(MeetupPrizeDraw.class, UserWinnerModel.class);
 
+        meetupPrizeDrawToUserWinnerModel.<String>addMapping(
+                src -> src.getUser().getPerson().getName(),
+                UserWinnerModel::setName
+        );
+
+        meetupPrizeDrawToUserWinnerModel.<String>addMapping(
+                src -> src.getUser().getEmail(),
+                UserWinnerModel::setEmail
+        );
+
+        meetupPrizeDrawToUserWinnerModel.<String>addMapping(
+                src -> src.getUser().getPhone(),
+                UserWinnerModel::setPhone
+        );
 
         return modelMapper;
     }

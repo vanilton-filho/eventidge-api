@@ -5,7 +5,6 @@ import com.eventidge.eventidgeapi.api.v1.model.MeetupModel;
 import com.eventidge.eventidgeapi.api.v1.model.input.EventModelInput;
 import com.eventidge.eventidgeapi.api.v1.serializers.MeetupSerializer;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
-import com.eventidge.eventidgeapi.domain.model.meetup.MeetupQrCode;
 import com.eventidge.eventidgeapi.domain.model.user.User;
 import com.eventidge.eventidgeapi.domain.service.MeetupService;
 import com.eventidge.eventidgeapi.domain.service.QrCodeService;

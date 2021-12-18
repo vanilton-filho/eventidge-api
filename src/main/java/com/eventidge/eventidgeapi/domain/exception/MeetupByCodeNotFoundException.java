@@ -1,8 +1,8 @@
 package com.eventidge.eventidgeapi.domain.exception;
 
-public class EventByCodeNotFoundException extends NotFoundException {
+public class MeetupByCodeNotFoundException extends NotFoundException {
 
-    public EventByCodeNotFoundException(String code) {
+    public MeetupByCodeNotFoundException(String code) {
         super(String.format("Not exists event with code %s", code));
     }
 }

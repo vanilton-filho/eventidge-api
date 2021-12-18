@@ -1,8 +1,8 @@
 package com.eventidge.eventidgeapi.domain.exception;
 
-public class EventByTagNotFoundException extends NotFoundException {
+public class MeetupByTagNotFoundException extends NotFoundException {
 
-    public EventByTagNotFoundException(String tag) {
+    public MeetupByTagNotFoundException(String tag) {
         super(String.format("Not exists event with tag %s", tag));
     }
 }

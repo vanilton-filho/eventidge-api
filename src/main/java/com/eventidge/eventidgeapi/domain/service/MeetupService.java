@@ -2,10 +2,13 @@ package com.eventidge.eventidgeapi.domain.service;
 
 import com.eventidge.eventidgeapi.domain.exception.*;
 import com.eventidge.eventidgeapi.domain.model.meetup.Meetup;
+import com.eventidge.eventidgeapi.domain.model.meetup.MeetupPrizeDraw;
 import com.eventidge.eventidgeapi.domain.model.user.User;
+import com.eventidge.eventidgeapi.domain.repository.MeetupPrizeDrawRepository;
 import com.eventidge.eventidgeapi.domain.repository.MeetupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -25,12 +28,12 @@ public class MeetupService {
 
     public Meetup getByCode(String code) {
         return meetupRepository.findByCode(code)
-                .orElseThrow(() -> new EventByCodeNotFoundException(code));
+                .orElseThrow(() -> new MeetupByCodeNotFoundException(code));
     }
 
     public Meetup getByTag(String tag) {
         return meetupRepository.findByTag(tag)
-                .orElseThrow(() -> new EventByTagNotFoundException(tag));
+                .orElseThrow(() -> new MeetupByTagNotFoundException(tag));
     }
 
     public Meetup save(Meetup meetup) {
