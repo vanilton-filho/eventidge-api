@@ -14,6 +14,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
@@ -43,10 +44,13 @@ public class MeetupQrCodeController {
 
             FileStorageService.FileRecovered qrCodeRecovered = fileStorageService.toRecover(meetupQrCode.getFileName());
 
-            return ResponseEntity.ok()
+            return ResponseEntity
+                    .status(HttpStatus.FOUND)
+//                    .contentLength(meetupQrCode.getLength())
                     .contentType(qrCodeMediaType)
+                    .header(HttpHeaders.LOCATION, qrCodeRecovered.getUrl())
                     .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*")
-                    .body(new InputStreamResource(qrCodeRecovered.getInputStream()));
+                    .build();
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
